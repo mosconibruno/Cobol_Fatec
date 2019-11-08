@@ -1,0 +1,129 @@
+       program-id. P1COBOLExerc2 as "P1COBOLExerc2".
+
+       environment division.
+       configuration section.
+
+       data division.
+       working-storage section.
+       01 Cadastro.
+           02 nome pic a(20).
+           02 sexo pic a(1).
+           02 pretencao-salarial pic zz,zzz,z9.
+           02 idade pic z9.
+           02 codigo pic 9(1).
+           02 profissao pic a(20).
+
+       01 Continuar.
+           02 op pic 9(1).
+       screen section.
+       01 TELA1.
+           02 line 08 column 01 value "Digite o nome: ".
+           02 line 09 column 01 value "Digite o sexo: ".
+           02 line 10 column 01 value "Digite a pretencao salarial: ".
+           02 line 11 column 01 value "Digite sua idade: ".
+           02 line 12 column 01 value "Digite o codigo: ".
+           
+       01 TELA-PROFISSOES.
+           02 line 01 column 01 value "1 - Cartografo".
+           02 line 02 column 01 value "2 - Assitente social".
+           02 line 03 column 01 value "3 - Psicologo".
+           02 line 04 column 01 value "4 - Atendente".
+           02 line 05 column 01 value "5 - Secretaria Bilingue".
+           02 line 06 column 01 value "6 - Geologo".
+
+       01 TELA-MOSTRAR.
+           02 line 01 column 01 value "Nome: ".
+           02 line 02 column 01 value "Profissao: ".
+           
+       01 TELA-DEFAULT.
+           02 line 13 column 01 value "Digite de 1 a 6".
+       
+       01 DESEJA-CONTINUAR.
+           02 line 01 column 01 value "Deseja continuar? ".
+
+       procedure division.
+       Inicio.
+           display erase at 0101.
+           display TELA-PROFISSOES at 0101.
+           display TELA1 at 0101.
+           
+       Entrada-Dados.
+           accept nome at 0816 prompt auto.
+           perform until nome not equal spaces
+           accept nome at 0816 prompt auto
+           end-perform.
+           
+           accept sexo at 0916 prompt auto.
+           perform until sexo not equal spaces
+           accept sexo at 0916 prompt auto
+           end-perform.
+           
+           accept pretencao-salarial at 1030 prompt auto.
+           perform until pretencao-salarial not equal spaces
+           accept pretencao-salarial at 1030 prompt auto
+           end-perform.
+
+           accept idade at 1119 prompt auto.
+           perform until idade not equal spaces
+           accept idade at 1119 prompt auto
+           end-perform.
+       
+       Pegar-Codigo.
+           accept codigo at 1218.
+           perform until codigo not equal spaces
+           accept codigo at 1218
+           end-perform.
+           perform Mostrar-Dados.
+           
+       Mostrar-Dados.
+           evaluate codigo
+               when 1
+                   move "Cartografo" to profissao
+                   display erase 0101
+                   display TELA-MOSTRAR at 0101
+                   display nome at 0107
+                   display profissao at 0212
+                   
+               when 2
+                   move "Assistente social" to profissao
+                   display erase 0101
+                   display TELA-MOSTRAR at 0101
+                   display nome at 0107
+                   display profissao at 0212
+                   
+               when 3
+                   move "Psicologo" to profissao
+                   display erase 0101
+                   display TELA-MOSTRAR at 0101
+                   display nome at 0107
+                   display profissao at 0212
+               
+               when 4
+                   move "Atendente" to profissao
+                   display erase 0101
+                   display TELA-MOSTRAR at 0101
+                   display nome at 0107
+                   display profissao at 0212
+
+               when 5
+                   move "Secretaria bilingue" to profissao
+                   display erase 0101
+                   display TELA-MOSTRAR at 0101
+                   display nome at 0107
+                   display profissao at 0212
+                   
+               when 6
+                   move "Geologo" to profissao
+                   display erase 0101
+                   display TELA-MOSTRAR at 0101
+                   display nome at 0107
+                   display profissao at 0212
+
+               when other
+                   display "OP invalida" at 1301
+                   move zeros to codigo
+                   perform Pegar-Codigo.
+
+           goback.
+
+       end program Program1.

@@ -1,0 +1,114 @@
+  program-id. Exerc1 as "Exerc1".
+
+       environment division.
+       configuration section.
+
+       data division.
+       working-storage section.
+          01 fib.
+               02 qt-e pic zz9.
+               02 qt pic 9(3).
+               02 num pic 9(5) values 0. 
+               02 num-e pic zzzz9.
+               02 a pic 9(5) values 1.
+               02 a-e pic zzzz9.
+               02 b pic 9(5).
+               02 b-e pic zzzz9.
+               02 cont pic 9(3) values 0.
+               02 cl pic 9(2) value 04.
+               02 op pic a(1).
+       screen section.
+           01 Tela1.
+               02 line 01 column 01 values "---Sequencia de Fibonacci-".
+      
+               02 line 02 column 01 values "Digite a quantidade : ".
+           01 Tela2.
+               02 line 04 column 01 values "A sequencia e :  ".
+               
+       procedure division.
+       Inicio.
+           display erase at 0101.
+           display Tela1 at 0101.
+           accept qt-e at 0223.
+           move qt-e to qt.
+           if qt = 0
+               perform Fim
+            else   
+       PERFORM until qt-e not equal zeros
+           accept qt-e at 0223
+           move qt-e to qt
+           if qt = 0
+               PERFORM Fim
+               
+       END-PERFORM.
+           move qt-e to qt.
+           display Tela2 at 0101.
+       perform until cont equal qt
+           compute cont = cont + 1
+           if cont = 1
+               move num to num-e
+               display num-e at line cl column 20
+               compute cl = cl + 1    
+           else
+            if cont = 2
+               move a to a-e
+               display a-e at line cl column 20
+               compute cl = cl + 1 
+            else
+               
+                    
+                   compute b = a + num
+                   move b to b-e
+                   display b-e at line cl column 20
+                   compute cl = cl + 1
+                   move a to num
+                   move b to a
+                 
+                   
+       END-PERFORM.
+           compute cl = cl + 1.
+           display " " line cl column 01.
+           compute cl = cl + 1.
+       PERFORM Fim.    
+       Fim.    
+           display "Deseja continuar <s/n> ? :" at line cl column 01 . 
+           accept op at line cl column 30.
+            if op = "s"
+               move 0 to qt-e
+               move 0 to cont
+               move 1 to a 
+               move 4 to cl
+               move 0 to num
+               move spaces to op
+               PERFORM Inicio
+           else 
+               if op = "n"
+                   display "Encerrado " at line cl column 01
+                   Stop Run
+               else 
+                   display "Invalido" at line cl column 01
+                   move spaces to op
+                   perform Fim
+       PERFORM until op not equal spaces 
+           accept op at line cl column 30
+           display op at line cl column 28
+           if op = "s"
+               move zeros to qt-e
+               move 0 to qt-e
+               move 0 to cont
+               move 1 to a 
+               move 4 to cl
+               move 0 to num
+               move spaces to op
+               PERFORM Inicio
+           else 
+               if op = 'n'
+                   display "Encerrado " at line cl column 01
+                   Stop Run
+               else 
+                   display "Invalido" at line cl column 01
+                   perform Fim
+       END-PERFORM.            
+           goback.
+
+       end program Exerc1.
